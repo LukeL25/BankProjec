@@ -19,4 +19,14 @@ typedef struct bank_user {
     account_t **accounts;
 } bank_user_t;
 
+//Functions:
+
+/** Creates a user account and generates a member code **/
+int create_user_account(char *name, int age);
+/** Edits user accounts. Their specific code is needed. **/
+int edit_user_account(int mem_code);
+/** Creates an account for the user **/
+int create_account(int mem_code, enum ACCOUNT_TYPE type);
+
+
 #endif
