@@ -2,7 +2,9 @@
 #define BANK_SYSTEM_H
 
 #define ERROR (0)
-#define SUCCESS(1)
+#define SUCCESS (1)
+#define FIRST_NAME_LENGTH (15)
+#define LAST_NAME_LENGTH (20)
 
 
 enum ACCOUNT_TYPE {
@@ -17,14 +19,14 @@ typedef struct account {
 } account_t;
 
 typedef struct bank_user {
-    char *first_name;
-    char *last_name;
+    char first_name[FIRST_NAME_LENGTH];
+    char last_name[LAST_NAME_LENGTH];
     int age;
     int member_code;
     account_t **accounts;
 } bank_user_t;
 
-/* Function prototypes */:
+/* Function prototypes */
 
 int create_user_account(char *, char *, int);
 int edit_user_account(int);

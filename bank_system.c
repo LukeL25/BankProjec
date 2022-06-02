@@ -11,9 +11,10 @@ int create_user_account(char *first_name, char *last_name, int age) {
     assert(last_name != NULL);
     assert(age >= 18);
     bank_user_t user = {0};
-    user.first_name = first_name;
-    user.last_name = last_name;
+    strncpy(user.first_name, first_name, FIRST_NAME_LENGTH);
+    strncpy(user.last_name, last_name, LAST_NAME_LENGTH);
     user.age = age;
+    
     return 0;
 } /* create_user_account */
 
