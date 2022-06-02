@@ -10,12 +10,24 @@ int create_user_account(char *first_name, char *last_name, int age) {
     assert(first_name != NULL);
     assert(last_name != NULL);
     assert(age >= 18);
+    /* Creating bank user from parameters */
     bank_user_t user = {0};
     strncpy(user.first_name, first_name, FIRST_NAME_LENGTH);
     strncpy(user.last_name, last_name, LAST_NAME_LENGTH);
     user.age = age;
-    
-    return 0;
+    /* Writing to bank logs */
+    FILE *fp = fopen("logs.txt", "r");
+    if (fp == NULL) {
+        return ERROR;
+    }
+    fseek(fp, 0, SEEK_END);
+    int status = fwrite(&user, 1, sizeof(bank_user_t), fp);
+    if (status != 1) {
+        return ERROR;
+    }
+    fclose(fp);
+    fp = NULL;
+    return SUCCESS;
 } /* create_user_account */
 
 int edit_user_account(int mem_code) {
