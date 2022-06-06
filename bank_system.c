@@ -31,10 +31,27 @@ int create_user_account(char *first_name, char *last_name, int age) {
 } /* create_user_account */
 
 int edit_user_account(int mem_code) {
+    
     return 0;
 }
 
+bank_user_t read_user_account(char *filename) {
+
+}
 int find_user_account(int mem_code) {
+    FILE *fp = fopen("logs.txt", "r");
+    if (fp == NULL) {
+        return ERROR;
+    }
+    /* TODO might want to write a more efficient way to
+     * traverse the accounts and grab the user. Will have to
+     * write sort function first
+     * 
+     */ 
+    int start = fseek(fp, 0, SEEK_SET);
+    while (ftell(fp) != fseek(fp, 0, SEEK_END)) {
+        
+    }
     return 0;
 }
 
