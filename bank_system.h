@@ -31,7 +31,7 @@ typedef struct bank_user {
 int create_user_account(char *, char *, int);
 int edit_user_account(int);
 int find_user_account(int);
-bank_user_t read_user_account(char *);
+bank_user_t read_user_account(FILE *);
 int create_account(int, enum ACCOUNT_TYPE);
 int search_logs();
 int withdraw_deposit();
