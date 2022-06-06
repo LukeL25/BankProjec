@@ -35,9 +35,17 @@ int edit_user_account(int mem_code) {
     return 0;
 }
 
-bank_user_t read_user_account(char *filename) {
+/* Simple function to read in a bank user struct
+ * from a binary file
+ */
 
-}
+bank_user_t read_user_account(FILE *fp) {
+    assert(fp != NULL);
+    bank_user_t user = {0};
+    fread(&user, sizeof(bank_user_t), 1, fp);
+    return user;
+} /* read_user_account() */
+
 int find_user_account(int mem_code) {
     FILE *fp = fopen("logs.txt", "r");
     if (fp == NULL) {
@@ -49,8 +57,9 @@ int find_user_account(int mem_code) {
      * 
      */ 
     int start = fseek(fp, 0, SEEK_SET);
+    bank_user_t user = {0};
     while (ftell(fp) != fseek(fp, 0, SEEK_END)) {
-        
+    
     }
     return 0;
 }
