@@ -38,31 +38,47 @@ int edit_user_account(int mem_code) {
 /* Simple function to read in a bank user struct
  * from a binary file
  */
-
-bank_user_t read_user_account(FILE *fp) {
+bank_user_t read_user_account(FILE *fp, int offset) {
     assert(fp != NULL);
     bank_user_t user = {0};
+    fseek(fp, offset * sizeof(bank_user_t), SEEK_SET);
+    int curr_position = 0;
+    curr_position = ftell(fp);
+    fseek(fp, 0, SEEK_END);
+    int length = ftell(fp);
+    if (curr_position> length) {
+        return BAD_USER;
+    }
+    fseek(fp, offset * sizeof(bank_user_t), SEEK_SET);
     fread(&user, sizeof(bank_user_t), 1, fp);
     return user;
 } /* read_user_account() */
 
-int find_user_account(int mem_code) {
+/* Finds user accounts using their given member code
+ * by traversing the log files and comparing codes.
+ * more efficient traversal method pending.
+ */
+bank_user_t find_user_account(int mem_code) {
     FILE *fp = fopen("logs.txt", "r");
     if (fp == NULL) {
-        return ERROR;
+        return BAD_USER;
     }
     /* TODO might want to write a more efficient way to
      * traverse the accounts and grab the user. Will have to
      * write sort function first
      * 
      */ 
-    int start = fseek(fp, 0, SEEK_SET);
-    bank_user_t user = {0};
-    while (ftell(fp) != fseek(fp, 0, SEEK_END)) {
-    
+    fseek(fp, 0, SEEK_END);
+    int length = ftell(fp);
+    for (int i = 0; (i * sizeof(bank_user_t)) < length; i++) {
+        bank_user_t user = {0};
+        user = read_user_account(fp, i);
+        if (user.member_code == mem_code) {
+            return user;
+        }
     }
-    return 0;
-}
+    return USER_NONEXIST;
+} /* find_user_account() */
 
 int create_account(int mem_code, enum ACCOUNT_TYPE type) {
     return 0;
