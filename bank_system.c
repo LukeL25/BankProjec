@@ -27,11 +27,15 @@ int create_user_account(char *first_name, char *last_name, int age) {
     }
     fclose(fp);
     fp = NULL;
+    /* Supposed to print new member code down here */
     return SUCCESS;
 } /* create_user_account */
 
 int edit_user_account(int mem_code) {
-    
+    assert(mem_code > 0);
+    FILE *fp = fopen("logs.txt", "rb+");
+    int account_location = find_user_account(mem_code);
+
     return 0;
 }
 
@@ -46,7 +50,7 @@ bank_user_t read_user_account(FILE *fp, int offset) {
     curr_position = ftell(fp);
     fseek(fp, 0, SEEK_END);
     int length = ftell(fp);
-    if (curr_position> length) {
+    if (curr_position > length) {
         return BAD_USER;
     }
     fseek(fp, offset * sizeof(bank_user_t), SEEK_SET);
@@ -56,12 +60,13 @@ bank_user_t read_user_account(FILE *fp, int offset) {
 
 /* Finds user accounts using their given member code
  * by traversing the log files and comparing codes.
- * more efficient traversal method pending.
+ * more efficient traversal method pending. Function
+ * returns offset of account.
  */
-bank_user_t find_user_account(int mem_code) {
+int find_user_account(int mem_code) {
     FILE *fp = fopen("logs.txt", "r");
     if (fp == NULL) {
-        return BAD_USER;
+        return ERROR;
     }
     /* TODO might want to write a more efficient way to
      * traverse the accounts and grab the user. Will have to
@@ -74,10 +79,10 @@ bank_user_t find_user_account(int mem_code) {
         bank_user_t user = {0};
         user = read_user_account(fp, i);
         if (user.member_code == mem_code) {
-            return user;
+            return ftell(fp);
         }
     }
-    return USER_NONEXIST;
+    return ERROR;
 } /* find_user_account() */
 
 int create_account(int mem_code, enum ACCOUNT_TYPE type) {
