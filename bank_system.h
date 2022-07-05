@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 #ifndef BANK_SYSTEM_H
 #define BANK_SYSTEM_H
 
@@ -51,5 +54,8 @@ int search_logs();
 int withdraw_deposit();
 int generate_code();
 void sort_accounts();
+
+/* UI Functions: */
+void user_account_navig();
 
 #endif

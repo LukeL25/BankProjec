@@ -1,4 +1,7 @@
 #include "bank_system.h"
+#include <assert.h>
+#include <string.h>
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 
