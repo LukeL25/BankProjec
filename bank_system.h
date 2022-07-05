@@ -49,7 +49,7 @@ int write_user_account(FILE *, int);
 int create_account(int, enum ACCOUNT_TYPE);
 int search_logs();
 int withdraw_deposit();
-void generate_code();
+int generate_code();
 void sort_accounts();
 
 #endif

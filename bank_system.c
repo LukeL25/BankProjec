@@ -27,8 +27,9 @@ int create_user_account(char *first_name, char *last_name, int age) {
     }
     fclose(fp);
     fp = NULL;
-    /* Supposed to print new member code down here */
-    return SUCCESS;
+    /* User's member_code is returned here*/
+    int mem_code = generate_code();
+    return mem_code;
 } /* create_user_account */
 
 int edit_user_account(int mem_code) {
@@ -97,8 +98,14 @@ int withdraw_deposit() {
     return 0;
 }
 
-void generate_code() {
-
+/* The function generate_code generates a random member code
+ * for when the user first creates their account. Their
+ * number should be unique unless a statistical anomaly occurs
+ */
+int generate_code() {
+    srand(time(NULL));
+    int code = rand();
+    return code;
 }
 
 void sort_accounts() {
