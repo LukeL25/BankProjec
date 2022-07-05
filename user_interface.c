@@ -1,6 +1,11 @@
 #include "bank_system.h"
+#include "bank_system.c"
 #include <stdio.h>
 #include <stdlib.h>
+
+void user_account_navig() {
+    printf("hehe\n");
+}
 
 int main() {
     while (1) {
@@ -41,15 +46,10 @@ int main() {
                 continue;
             }
             printf("Here is your new member code: %d, DO NOT LOSE THIS. It's required for login.", &mem_code);
-            
+            continue;
         }
-        else if(user_choice == '3') {
-
+        else if (user_choice == '3') {
+            break;
         }
     }
 }
-
-void user_account_navig() {
-
-}
-
