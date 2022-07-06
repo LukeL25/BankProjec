@@ -21,11 +21,13 @@ int create_user_account(char *first_name, char *last_name, int age) {
     /* Writing to bank logs */
     FILE *fp = fopen(FILENAME, "w");
     if (fp == NULL) {
+        printf("Error 1\n");
         return ERROR;
     }
     fseek(fp, 0, SEEK_END);
     int status = fwrite(&user, 1, sizeof(bank_user_t), fp);
     if (status != 1) {
+        printf("Error 2, %d\n", &status);
         return ERROR;
     }
     fclose(fp);
@@ -115,7 +117,7 @@ void sort_accounts() {
 
 }
 
-/* Bank UI Methods */
+/* Bank UI Functions */
 
 void user_account_navig() {
     printf("hehe\n");

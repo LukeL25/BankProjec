@@ -3,10 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// void user_account_navig() {
-//     printf("hehe\n");
-// }
-
 int main() {
     while (1) {
         printf("Welcome to Lawson Banking! Select One:\n1. Log In\n2. Create New Account\n3. Exit\n");
@@ -37,7 +33,7 @@ int main() {
             int age;
             printf("To create a user account, first enter in your first name:\n");
             scanf("%14s", &first_name);
-            printf("Now eneter your last name:\n");
+            printf("Now enter your last name:\n");
             scanf("%20s", &last_name);
             printf("Lastly, enter your age:\n");
             scanf("%d", &age);
@@ -50,6 +46,7 @@ int main() {
             continue;
         }
         else if (user_choice == 3) {
+            printf("Thank you for your service!\n");
             break;
         }
     }
