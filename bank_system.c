@@ -19,7 +19,7 @@ int create_user_account(char *first_name, char *last_name, int age) {
     strncpy(user.last_name, last_name, LAST_NAME_LENGTH);
     user.age = age;
     /* Writing to bank logs */
-    FILE *fp = fopen("logs.txt", "r");
+    FILE *fp = fopen(FILENAME, "w");
     if (fp == NULL) {
         return ERROR;
     }
@@ -115,3 +115,8 @@ void sort_accounts() {
 
 }
 
+/* Bank UI Methods */
+
+void user_account_navig() {
+    printf("hehe\n");
+}

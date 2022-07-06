@@ -3,16 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void user_account_navig() {
-    printf("hehe\n");
-}
+// void user_account_navig() {
+//     printf("hehe\n");
+// }
 
 int main() {
     while (1) {
         printf("Welcome to Lawson Banking! Select One:\n1. Log In\n2. Create New Account\n3. Exit\n");
-        char user_choice = ' ';
-        scanf(" %c ", &user_choice);
-        if (user_choice == '1') {
+        int user_choice;
+        scanf("%d", &user_choice);
+        if (user_choice == 1) {
             while (1) {
                 printf("input member code (type 3 anytime to exit to main menu):\n");
                 int mem_code = 0;
@@ -31,16 +31,16 @@ int main() {
                 } 
             }
         }
-        if (user_choice == '2') {
+        if (user_choice == 2) {
             char first_name[FIRST_NAME_LENGTH];
             char last_name[LAST_NAME_LENGTH];
             int age;
             printf("To create a user account, first enter in your first name:\n");
-            scanf("%14s\n", &first_name);
+            scanf("%14s", &first_name);
             printf("Now eneter your last name:\n");
-            scanf("%20s\n", &last_name);
-            printf("Lastly, enter your name:\n");
-            scanf("%d\n", &age);
+            scanf("%20s", &last_name);
+            printf("Lastly, enter your age:\n");
+            scanf("%d", &age);
             int mem_code = create_user_account(first_name, last_name, age);
             if (mem_code == ERROR) {
                 printf("Error occurred, cannot create account at this time. Returning to menu....\n");
@@ -49,7 +49,7 @@ int main() {
             printf("Here is your new member code: %d, DO NOT LOSE THIS. It's required for login.", &mem_code);
             continue;
         }
-        else if (user_choice == '3') {
+        else if (user_choice == 3) {
             break;
         }
     }
