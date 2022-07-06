@@ -8,6 +8,7 @@
 #define SUCCESS (1)
 #define FIRST_NAME_LENGTH (15)
 #define LAST_NAME_LENGTH (20)
+#define FILENAME ("logs.txt")
 
 #define USER_NONEXIST ((bank_user_t){\
     .first_name = "NONEXIST",\
