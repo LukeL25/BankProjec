@@ -25,9 +25,10 @@ int create_user_account(char *first_name, char *last_name, int age) {
         return ERROR;
     }
     fseek(fp, 0, SEEK_END);
-    int status = fwrite(&user, 1, sizeof(bank_user_t), fp);
+    int status = fwrite(&user, sizeof(bank_user_t), 1, fp);
     if (status != 1) {
-        printf("Error 2, %d\n", &status);
+        printf("Error 2, updated, %d\n", &status);
+
         return ERROR;
     }
     fclose(fp);
