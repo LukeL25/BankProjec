@@ -19,7 +19,7 @@ int create_user_account(char *first_name, char *last_name, int age) {
     strncpy(user.last_name, last_name, LAST_NAME_LENGTH);
     user.age = age;
     /* Writing to bank logs */
-    FILE *fp = fopen(FILENAME, "w");
+    FILE *fp = fopen(FILENAME, "a");
     if (fp == NULL) {
         printf("Error 1\n");
         return ERROR;
