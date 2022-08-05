@@ -19,10 +19,19 @@ int main() {
                 int account_location = find_user_account(mem_code);
                 if (account_location == ERROR) {
                     printf("Falied to login, either account does not exist or credentials were inputted incorrectly.\n");
-                    
+                    continue;
                 }
-                else if (account_location == SUCCESS) {
+                else if (account_location != ERROR) {
                     printf("successfully logged in!\n");
+                    /* Opening a file pointer to grab user data, I don't know
+                     * if I should be doing all this behind the scenes in bank_system.c,
+                     * but this is just a temporary fix.
+                     */
+                    FILE *file_pointer = fopen(FILENAME, "r");
+                    bank_user_t user = read_user_account(file_pointer, account_location);
+                    printf("%s\n", user.first_name);
+                    fclose(file_pointer);
+                    file_pointer = NULL;
                     user_account_navig();
                 } 
             }

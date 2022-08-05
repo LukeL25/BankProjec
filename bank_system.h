@@ -4,7 +4,7 @@
 #ifndef BANK_SYSTEM_H
 #define BANK_SYSTEM_H
 
-#define ERROR (0)
+#define ERROR (-1)
 #define SUCCESS (1)
 #define FIRST_NAME_LENGTH (15)
 #define LAST_NAME_LENGTH (20)
