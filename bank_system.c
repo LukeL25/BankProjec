@@ -80,13 +80,15 @@ int find_user_account(int mem_code) {
      * write sort function first
      * 
      */ 
-    fseek(fp, 0, SEEK_END);
+    /*fseek(fp, 0, SEEK_END);*/
     int length = ftell(fp);
     for (int i = 0; (i * sizeof(bank_user_t)) < length; i++) {
         bank_user_t user = {0};
         user = read_user_account(fp, i);
         if (user.member_code == mem_code) {
-            return ftell(fp);
+            return i;
+            fclose(fp);
+            fp = NULL;
         }
     }
     return ERROR;
