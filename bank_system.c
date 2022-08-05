@@ -17,6 +17,8 @@ int create_user_account(char *first_name, char *last_name, int age) {
     bank_user_t user = {0};
     strncpy(user.first_name, first_name, FIRST_NAME_LENGTH);
     strncpy(user.last_name, last_name, LAST_NAME_LENGTH);
+    int mem_code = generate_code();
+    user.member_code = mem_code;
     user.age = age;
     /* Writing to bank logs */
     FILE *fp = fopen(FILENAME, "a");
@@ -28,15 +30,13 @@ int create_user_account(char *first_name, char *last_name, int age) {
     int status = fwrite(&user, sizeof(bank_user_t), 1, fp);
     if (status != 1) {
         printf("Error 2, updated, %d\n", &status);
-
         return ERROR;
     }
     fclose(fp);
     fp = NULL;
     /* User's member_code is returned here*/
-    int mem_code = generate_code();
     return mem_code;
-} /* create_user_account */
+} /* create_user_account() */
 
 int edit_user_account(int mem_code) {
     assert(mem_code > 0);
@@ -113,6 +113,10 @@ int withdraw_deposit() {
 int generate_code() {
     srand(time(NULL));
     int code = rand();
+    /* preventing a code to be a negative number */
+    if (code < 0) {
+        code = code * -1;
+    }
     return code;
 }
 
