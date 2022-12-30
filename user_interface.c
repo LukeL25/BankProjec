@@ -13,6 +13,7 @@ int main() {
                 printf("input member code (type 3 anytime to exit to main menu):\n");
                 int mem_code = 0;
                 scanf("%d", &mem_code);
+                printf("%d\n", &mem_code);
                 if (mem_code == 3) {
                     break;
                 }
