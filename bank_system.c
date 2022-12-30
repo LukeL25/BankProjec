@@ -73,6 +73,7 @@ bank_user_t read_user_account(FILE *fp, int offset) {
 int find_user_account(int mem_code) {
     FILE *fp = fopen("logs.txt", "r");
     if (fp == NULL) {
+        printf("Error with file pointer initialization\n");
         return ERROR;
     }
     /* TODO might want to write a more efficient way to
@@ -80,7 +81,7 @@ int find_user_account(int mem_code) {
      * write sort function first
      * 
      */ 
-    /*fseek(fp, 0, SEEK_END);*/
+    fseek(fp, 0, SEEK_END);
     int length = ftell(fp);
     for (int i = 0; (i * sizeof(bank_user_t)) < length; i++) {
         bank_user_t user = {0};
